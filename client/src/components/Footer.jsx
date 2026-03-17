@@ -14,16 +14,16 @@ const Footer = () => {
               and collaboration among students. Join us in building the future together.
             </p>
             <div className="d-flex gap-3">
-              <a href="#" aria-label="Facebook">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <FaFacebook size={24} />
               </a>
-              <a href="#" aria-label="Twitter">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                 <FaTwitter size={24} />
               </a>
-              <a href="#" aria-label="Instagram">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <FaInstagram size={24} />
               </a>
-              <a href="#" aria-label="LinkedIn">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <FaLinkedin size={24} />
               </a>
             </div>
