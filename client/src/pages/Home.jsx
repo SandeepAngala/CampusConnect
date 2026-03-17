@@ -1,14 +1,12 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { FaUsers } from 'react-icons/fa';
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { FaUsers } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import chancellorImg from "../assets/chancellor.jpg";
-import proChancellorImg from "../assets/prochancellor.jpg";
 import hodImg from "../assets/hod.jpg";
+import proChancellorImg from "../assets/prochancellor.jpg";
 
 const Home = () => {
-
   // ---------------- STATIC DATA ----------------
 
   const announcements = [
@@ -17,22 +15,22 @@ const Home = () => {
       title: "Welcome to Brainstorm Club",
       content: "Our club empowers young innovators and leaders.",
       publishDate: "2025-02-10",
-      priority: "Normal"
+      priority: "Normal",
     },
     {
       _id: 2,
       title: "Hackathon 2025 Announced",
       content: "Participate in the biggest tech event of the year.",
       publishDate: "2025-02-11",
-      priority: "High"
+      priority: "High",
     },
     {
       _id: 3,
       title: "New Projects Launched",
       content: "Several new student-led projects are now live.",
       publishDate: "2025-02-12",
-      priority: "Urgent"
-    }
+      priority: "Urgent",
+    },
   ];
 
   const events = [
@@ -43,7 +41,7 @@ const Home = () => {
       date: "2025-03-10",
       location: "Auditorium Block A",
       time: "10:00 AM",
-      image: null
+      image: null,
     },
     {
       _id: 2,
@@ -52,7 +50,7 @@ const Home = () => {
       date: "2025-04-01",
       location: "Main Hall",
       time: "11:00 AM",
-      image: null
+      image: null,
     },
     {
       _id: 3,
@@ -61,8 +59,8 @@ const Home = () => {
       date: "2025-04-14",
       location: "Innovation Lab",
       time: "09:00 AM",
-      image: null
-    }
+      image: null,
+    },
   ];
 
   const activities = [
@@ -73,7 +71,7 @@ const Home = () => {
       status: "Ongoing",
       type: "Technical",
       startDate: "2025-02-01",
-      images: []
+      images: [],
     },
     {
       _id: 2,
@@ -82,7 +80,7 @@ const Home = () => {
       status: "Completed",
       type: "Workshop",
       startDate: "2025-01-18",
-      images: []
+      images: [],
     },
     {
       _id: 3,
@@ -91,8 +89,8 @@ const Home = () => {
       status: "Ongoing",
       type: "Project",
       startDate: "2025-01-05",
-      images: []
-    }
+      images: [],
+    },
   ];
 
   // STATIC LEADERSHIP
@@ -108,17 +106,16 @@ const Home = () => {
       image: proChancellorImg,
     },
     {
-      name: "Himanshu Kumar Singh",
+      name: "Sandeep Angala",
       title: "Club Head",
       image: hodImg,
-    }
+    },
   ];
 
   // ------------------------------------------------------
 
   return (
     <div className="fade-in">
-
       {/* HERO SECTION */}
       <section className="hero-section">
         <Container>
@@ -133,7 +130,12 @@ const Home = () => {
                 <Button as={Link} to="/events" variant="light" size="lg">
                   Explore Events
                 </Button>
-                <Button as={Link} to="/activities" variant="outline-light" size="lg">
+                <Button
+                  as={Link}
+                  to="/activities"
+                  variant="outline-light"
+                  size="lg"
+                >
                   View Projects
                 </Button>
               </div>
@@ -148,7 +150,9 @@ const Home = () => {
           <Row className="mb-5">
             <Col className="text-center">
               <h2 className="text-gradient">Our Leadership</h2>
-              <p className="lead">Meet the visionary leaders guiding our club</p>
+              <p className="lead">
+                Meet the visionary leaders guiding our club
+              </p>
             </Col>
           </Row>
 
@@ -156,7 +160,11 @@ const Home = () => {
             {leaders.map((leader, index) => (
               <Col md={4} key={index} className="mb-4">
                 <Card className="leadership-card slide-up">
-                  <img src={leader.image} alt={leader.name} className="leadership-img" />
+                  <img
+                    src={leader.image}
+                    alt={leader.name}
+                    className="leadership-img"
+                  />
                   <h5 className="leadership-name">{leader.name}</h5>
                   <p className="leadership-position">{leader.title}</p>
                 </Card>
@@ -178,9 +186,16 @@ const Home = () => {
       <section className="section-padding">
         <Container>
           <Row className="mb-4">
-            <Col><h3 className="text-gradient">Recent Announcements</h3></Col>
+            <Col>
+              <h3 className="text-gradient">Recent Announcements</h3>
+            </Col>
             <Col xs="auto">
-              <Button as={Link} to="/announcements" variant="outline-primary" size="sm">
+              <Button
+                as={Link}
+                to="/announcements"
+                variant="outline-primary"
+                size="sm"
+              >
                 View All
               </Button>
             </Col>
@@ -189,10 +204,16 @@ const Home = () => {
           <Row>
             {announcements.map((announcement) => (
               <Col md={4} key={announcement._id} className="mb-3">
-                <div className={`announcement-item 
-                  ${announcement.priority === 'Urgent' ? 'announcement-urgent' :
-                    announcement.priority === 'High' ? 'announcement-high' : ''}`}>
-
+                <div
+                  className={`announcement-item 
+                  ${
+                    announcement.priority === "Urgent"
+                      ? "announcement-urgent"
+                      : announcement.priority === "High"
+                        ? "announcement-high"
+                        : ""
+                  }`}
+                >
                   <h6 className="fw-bold">{announcement.title}</h6>
                   <p>{announcement.content}</p>
 
@@ -201,10 +222,15 @@ const Home = () => {
                   </small>
 
                   <div className="mt-2">
-                    <span className={`badge bg-${
-                      announcement.priority === 'Urgent' ? 'danger' :
-                      announcement.priority === 'High' ? 'warning' : 'info'
-                    }`}>
+                    <span
+                      className={`badge bg-${
+                        announcement.priority === "Urgent"
+                          ? "danger"
+                          : announcement.priority === "High"
+                            ? "warning"
+                            : "info"
+                      }`}
+                    >
                       {announcement.priority}
                     </span>
                   </div>
@@ -219,9 +245,16 @@ const Home = () => {
       <section className="bg-light section-padding">
         <Container>
           <Row className="mb-4">
-            <Col><h3 className="text-gradient">Upcoming Events</h3></Col>
+            <Col>
+              <h3 className="text-gradient">Upcoming Events</h3>
+            </Col>
             <Col xs="auto">
-              <Button as={Link} to="/events" variant="outline-primary" size="sm">
+              <Button
+                as={Link}
+                to="/events"
+                variant="outline-primary"
+                size="sm"
+              >
                 View Calendar
               </Button>
             </Col>
@@ -255,9 +288,16 @@ const Home = () => {
       <section className="section-padding">
         <Container>
           <Row className="mb-4">
-            <Col><h3 className="text-gradient">Featured Activities</h3></Col>
+            <Col>
+              <h3 className="text-gradient">Featured Activities</h3>
+            </Col>
             <Col xs="auto">
-              <Button as={Link} to="/activities" variant="outline-primary" size="sm">
+              <Button
+                as={Link}
+                to="/activities"
+                variant="outline-primary"
+                size="sm"
+              >
                 View All Projects
               </Button>
             </Col>
@@ -267,8 +307,9 @@ const Home = () => {
             {activities.map((activity) => (
               <Col md={4} key={activity._id} className="mb-4">
                 <Card className="activity-card">
-
-                  <div className={`activity-status status-${activity.status.toLowerCase()}`}>
+                  <div
+                    className={`activity-status status-${activity.status.toLowerCase()}`}
+                  >
                     {activity.status}
                   </div>
 
@@ -283,14 +324,12 @@ const Home = () => {
                       </small>
                     </div>
                   </Card.Body>
-
                 </Card>
               </Col>
             ))}
           </Row>
         </Container>
       </section>
-
     </div>
   );
 };

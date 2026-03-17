@@ -82,11 +82,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   // In your AuthContext
-const logout = () => {
-  setUser(null);
-  localStorage.removeItem('user');
-  // Don't navigate here - let component handle redirection
-};
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  };
 
   const updateProfile = async (profileData) => {
     try {
