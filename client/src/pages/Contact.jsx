@@ -199,16 +199,16 @@ const Contact = () => {
               <Card.Body>
                 <p>Stay connected with us on social media for the latest updates!</p>
                 <div className="d-flex gap-3">
-                  <a href="#" className="text-primary" aria-label="Facebook">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-primary" aria-label="Facebook">
                     <FaFacebook size={24} />
                   </a>
-                  <a href="#" className="text-info" aria-label="Twitter">
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-info" aria-label="Twitter">
                     <FaTwitter size={24} />
                   </a>
-                  <a href="#" className="text-danger" aria-label="Instagram">
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-danger" aria-label="Instagram">
                     <FaInstagram size={24} />
                   </a>
-                  <a href="#" className="text-primary" aria-label="LinkedIn">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-primary" aria-label="LinkedIn">
                     <FaLinkedin size={24} />
                   </a>
                 </div>

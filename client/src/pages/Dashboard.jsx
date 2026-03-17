@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Nav, Tab, Alert } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Row, Col, Nav, Tab, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 import { FaUsers, FaBullhorn, FaCalendarAlt, FaTasks, FaChartBar } from 'react-icons/fa';

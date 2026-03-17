@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, Table, Button, Modal, Form, Alert, Badge, Spinner } from 'react-bootstrap';
-import { FaPlus, FaEdit, FaTrash, FaEye } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import { announcementAPI } from '../../services/api';
 
 const AnnouncementManager = () => {
@@ -22,11 +22,7 @@ const AnnouncementManager = () => {
   const categories = ['General', 'Academic', 'Event', 'Important', 'Club News'];
   const priorities = ['Low', 'Medium', 'High', 'Urgent'];
 
-  useEffect(() => {
-    fetchAnnouncements();
-  }, []);
-
-  const fetchAnnouncements = async () => {
+  const fetchAnnouncements = useCallback(async () => {
     try {
       setLoading(true);
       const response = await announcementAPI.getAll({ limit: 100 });
@@ -36,7 +32,11 @@ const AnnouncementManager = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchAnnouncements();
+  }, [fetchAnnouncements]);
 
   const showAlert = (type, message) => {
     setAlert({ show: true, type, message });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Card, Badge, Spinner, Alert, Form, InputGroup, Button } from 'react-bootstrap';
 import { FaSearch, FaCalendarAlt, FaUser, FaUsers, FaTrophy, FaCog } from 'react-icons/fa';
 import { activityAPI } from '../services/api';
@@ -15,11 +15,7 @@ const Activities = () => {
   const types = ['Project', 'Competition', 'Workshop', 'Community Service', 'Research', 'Achievement', 'Other'];
   const statuses = ['Planned', 'In Progress', 'Completed', 'On Hold'];
 
-  useEffect(() => {
-    fetchActivities();
-  }, [selectedType, selectedStatus, viewMode]);
-
-  const fetchActivities = async () => {
+  const fetchActivities = useCallback(async () => {
     try {
       setLoading(true);
       let response;
@@ -42,7 +38,11 @@ const Activities = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedType, selectedStatus, viewMode]);
+
+  useEffect(() => {
+    fetchActivities();
+  }, [fetchActivities]);
 
   const filteredActivities = activities.filter(activity =>
     activity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

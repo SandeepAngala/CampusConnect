@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, Table, Button, Modal, Form, Alert, Badge, Spinner } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import { leadershipAPI } from '../../services/api';
@@ -32,11 +32,7 @@ const LeadershipManager = () => {
 
   const positions = ['Chancellor', 'Vice Chancellor', 'HOD', 'Club President', 'Vice President', 'Secretary', 'Treasurer', 'Technical Lead', 'Event Coordinator', 'Other'];
 
-  useEffect(() => {
-    fetchLeadership();
-  }, []);
-
-  const fetchLeadership = async () => {
+  const fetchLeadership = useCallback(async () => {
     try {
       setLoading(true);
       const response = await leadershipAPI.getAll();
@@ -46,7 +42,11 @@ const LeadershipManager = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchLeadership();
+  }, [fetchLeadership]);
 
   const showAlert = (type, message) => {
     setAlert({ show: true, type, message });

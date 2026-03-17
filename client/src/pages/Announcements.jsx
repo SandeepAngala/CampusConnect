@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Card, Badge, Spinner, Alert, Form, InputGroup } from 'react-bootstrap';
 import { FaSearch, FaCalendarAlt, FaUser } from 'react-icons/fa';
 import { announcementAPI } from '../services/api';
@@ -14,11 +14,7 @@ const Announcements = () => {
   const categories = ['General', 'Academic', 'Event', 'Important', 'Club News'];
   const priorities = ['Low', 'Medium', 'High', 'Urgent'];
 
-  useEffect(() => {
-    fetchAnnouncements();
-  }, [selectedCategory, selectedPriority]);
-
-  const fetchAnnouncements = async () => {
+  const fetchAnnouncements = useCallback(async () => {
     try {
       setLoading(true);
       const params = {};
@@ -33,7 +29,11 @@ const Announcements = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory, selectedPriority]);
+
+  useEffect(() => {
+    fetchAnnouncements();
+  }, [fetchAnnouncements]);
 
   const filteredAnnouncements = announcements.filter(announcement =>
     announcement.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

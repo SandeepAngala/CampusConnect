@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, Table, Button, Modal, Form, Alert, Badge, Spinner } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import { eventAPI } from '../../services/api';
@@ -27,13 +27,8 @@ const EventManager = () => {
   const [alert, setAlert] = useState({ show: false, type: '', message: '' });
 
   const categories = ['Workshop', 'Seminar', 'Competition', 'Social', 'Meeting', 'Conference', 'Other'];
-  const statuses = ['Upcoming', 'Ongoing', 'Completed', 'Cancelled'];
 
-  useEffect(() => {
-    fetchEvents();
-  }, []);
-
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     try {
       setLoading(true);
       const response = await eventAPI.getAll({ limit: 100 });
@@ -43,7 +38,11 @@ const EventManager = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
 
   const showAlert = (type, message) => {
     setAlert({ show: true, type, message });

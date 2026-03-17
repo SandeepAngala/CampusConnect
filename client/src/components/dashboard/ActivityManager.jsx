@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, Table, Button, Modal, Form, Alert, Badge, Spinner } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import { activityAPI } from '../../services/api';
@@ -29,11 +29,7 @@ const ActivityManager = () => {
   const statuses = ['Planned', 'In Progress', 'Completed', 'On Hold'];
   const visibilities = ['Public', 'Members Only', 'Private'];
 
-  useEffect(() => {
-    fetchActivities();
-  }, []);
-
-  const fetchActivities = async () => {
+  const fetchActivities = useCallback(async () => {
     try {
       setLoading(true);
       const response = await activityAPI.getAll({ limit: 100 });
@@ -43,7 +39,11 @@ const ActivityManager = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchActivities();
+  }, [fetchActivities]);
 
   const showAlert = (type, message) => {
     setAlert({ show: true, type, message });

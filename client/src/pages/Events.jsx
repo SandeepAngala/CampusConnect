@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col, Card, Badge, Spinner, Alert, Form, InputGroup, Button } from 'react-bootstrap';
 import { FaSearch, FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaUsers } from 'react-icons/fa';
-import { eventAPI } from '../services/api';
+// import { eventAPI } from '../services/api';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -15,83 +15,83 @@ const Events = () => {
   const categories = ['Workshop', 'Seminar', 'Competition', 'Social', 'Meeting', 'Conference', 'Other'];
   const statuses = ['Upcoming', 'Ongoing', 'Completed', 'Cancelled'];
 
-  useEffect(() => {
-    fetchEvents();
+  const fetchEvents = useCallback(async () => {
+    try {
+      setLoading(true);
+  
+      // Static mock events
+      const mockEvents = [
+        {
+          _id: "1",
+          title: "AI Workshop",
+          description: "Learn the basics of Artificial Intelligence and Machine Learning.",
+          category: "Workshop",
+          status: "Upcoming",
+          date: "2025-07-25",
+          time: "10:00 AM - 2:00 PM",
+          location: "Auditorium A",
+          organizer: "Tech Club",
+          currentParticipants: 30,
+          maxParticipants: 100,
+          registrationRequired: true,
+          registrationDeadline: "2025-07-23",
+          contactEmail: "aiworkshop@campusconnect.com",
+          tags: ["AI", "ML", "Tech"],
+        },
+        {
+          _id: "2",
+          title: "Business Plan Competition",
+          description: "Pitch your startup idea to a panel of investors and win funding.",
+          category: "Competition",
+          status: "Ongoing",
+          date: "2025-07-20",
+          time: "1:00 PM - 5:00 PM",
+          location: "Conference Hall B",
+          organizer: "Entrepreneurship Cell",
+          currentParticipants: 12,
+          maxParticipants: 20,
+          registrationRequired: false,
+          contactEmail: "bplan@campusconnect.com",
+          tags: ["Startup", "Business", "Competition"],
+        },
+        {
+          _id: "3",
+          title: "Mental Health Seminar",
+          description: "Join experts to discuss student mental wellness and stress relief.",
+          category: "Seminar",
+          status: "Completed",
+          date: "2025-06-10",
+          time: "11:00 AM - 1:00 PM",
+          location: "Health Center",
+          organizer: "Wellbeing Society",
+          currentParticipants: 60,
+          maxParticipants: 60,
+          registrationRequired: false,
+          contactEmail: "wellness@campusconnect.com",
+          tags: ["Health", "Seminar"],
+        }
+      ];
+  
+      // Apply basic filtering for demo
+      const filtered = mockEvents.filter(e => {
+        const matchCategory = !selectedCategory || e.category === selectedCategory;
+        const matchStatus = !selectedStatus || e.status === selectedStatus;
+        const isUpcoming = viewMode !== 'upcoming' || new Date(e.date) >= new Date();
+        return matchCategory && matchStatus && isUpcoming;
+      });
+  
+      setEvents(filtered);
+    } catch (err) {
+      setError('Failed to load mock events.');
+      console.error('Mock fetch failed:', err);
+    } finally {
+      setLoading(false);
+    }
   }, [selectedCategory, selectedStatus, viewMode]);
 
-  const fetchEvents = async () => {
-  try {
-    setLoading(true);
-
-    // Static mock events
-    const mockEvents = [
-      {
-        _id: "1",
-        title: "AI Workshop",
-        description: "Learn the basics of Artificial Intelligence and Machine Learning.",
-        category: "Workshop",
-        status: "Upcoming",
-        date: "2025-07-25",
-        time: "10:00 AM - 2:00 PM",
-        location: "Auditorium A",
-        organizer: "Tech Club",
-        currentParticipants: 30,
-        maxParticipants: 100,
-        registrationRequired: true,
-        registrationDeadline: "2025-07-23",
-        contactEmail: "aiworkshop@campusconnect.com",
-        tags: ["AI", "ML", "Tech"],
-      },
-      {
-        _id: "2",
-        title: "Business Plan Competition",
-        description: "Pitch your startup idea to a panel of investors and win funding.",
-        category: "Competition",
-        status: "Ongoing",
-        date: "2025-07-20",
-        time: "1:00 PM - 5:00 PM",
-        location: "Conference Hall B",
-        organizer: "Entrepreneurship Cell",
-        currentParticipants: 12,
-        maxParticipants: 20,
-        registrationRequired: false,
-        contactEmail: "bplan@campusconnect.com",
-        tags: ["Startup", "Business", "Competition"],
-      },
-      {
-        _id: "3",
-        title: "Mental Health Seminar",
-        description: "Join experts to discuss student mental wellness and stress relief.",
-        category: "Seminar",
-        status: "Completed",
-        date: "2025-06-10",
-        time: "11:00 AM - 1:00 PM",
-        location: "Health Center",
-        organizer: "Wellbeing Society",
-        currentParticipants: 60,
-        maxParticipants: 60,
-        registrationRequired: false,
-        contactEmail: "wellness@campusconnect.com",
-        tags: ["Health", "Seminar"],
-      }
-    ];
-
-    // Apply basic filtering for demo
-    const filtered = mockEvents.filter(e => {
-      const matchCategory = !selectedCategory || e.category === selectedCategory;
-      const matchStatus = !selectedStatus || e.status === selectedStatus;
-      const isUpcoming = viewMode !== 'upcoming' || new Date(e.date) >= new Date();
-      return matchCategory && matchStatus && isUpcoming;
-    });
-
-    setEvents(filtered);
-  } catch (err) {
-    setError('Failed to load mock events.');
-    console.error('Mock fetch failed:', err);
-  } finally {
-    setLoading(false);
-  }
-};
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
 
   const filteredEvents = events.filter(event =>
     event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
