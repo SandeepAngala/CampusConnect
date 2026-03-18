@@ -1,40 +1,57 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock, FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { useState } from "react";
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Row,
+} from "react-bootstrap";
+import {
+  FaClock,
+  FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaTwitter,
+} from "react-icons/fa";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [showAlert, setShowAlert] = useState(false);
-  const [alertType, setAlertType] = useState('success');
+  const [alertType, setAlertType] = useState("success");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setAlertType('success');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setAlertType("success");
       setShowAlert(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      
+      setFormData({ name: "", email: "", subject: "", message: "" });
+
       setTimeout(() => setShowAlert(false), 5000);
     } catch (error) {
-      setAlertType('danger');
+      setAlertType("danger");
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 5000);
     } finally {
@@ -61,9 +78,9 @@ const Contact = () => {
       <Container className="py-5">
         {showAlert && (
           <Alert variant={alertType} className="mb-4">
-            {alertType === 'success' 
-              ? 'Thank you for your message! We\'ll get back to you soon.' 
-              : 'Sorry, there was an error sending your message. Please try again.'}
+            {alertType === "success"
+              ? "Thank you for your message! We'll get back to you soon."
+              : "Sorry, there was an error sending your message. Please try again."}
           </Alert>
         )}
 
@@ -104,7 +121,7 @@ const Contact = () => {
                       </Form.Group>
                     </Col>
                   </Row>
-                  
+
                   <Form.Group className="mb-3">
                     <Form.Label>Subject *</Form.Label>
                     <Form.Control
@@ -116,7 +133,7 @@ const Contact = () => {
                       placeholder="What is this message about?"
                     />
                   </Form.Group>
-                  
+
                   <Form.Group className="mb-4">
                     <Form.Label>Message *</Form.Label>
                     <Form.Control
@@ -129,14 +146,14 @@ const Contact = () => {
                       placeholder="Tell us more about your inquiry, suggestions, or how you'd like to get involved..."
                     />
                   </Form.Group>
-                  
-                  <Button 
-                    type="submit" 
-                    variant="primary" 
+
+                  <Button
+                    type="submit"
+                    variant="primary"
                     size="lg"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </Form>
               </Card.Body>
@@ -155,36 +172,41 @@ const Contact = () => {
                   <div>
                     <strong>Email</strong>
                     <br />
-                    <a href="mailto:himanshukumarsingh454@gmail.com">himanshukumarsingh454@gmail.com</a>
+                    <a href="mailto:sandeepbablu265@gmail.com">
+                      sandeepbablu265@gmail.com
+                    </a>
                   </div>
                 </div>
-                
+
                 <div className="d-flex align-items-center mb-3">
                   <FaPhone className="me-3 text-success" size={20} />
                   <div>
                     <strong>Phone</strong>
                     <br />
-                    <a href="tel:+918320552114">+91 83205 52114</a>
+                    <a href="tel:+919346425675">+91 9346425675 </a>
                   </div>
                 </div>
-                
+
                 <div className="d-flex align-items-center mb-3">
                   <FaMapMarkerAlt className="me-3 text-danger" size={20} />
                   <div>
                     <strong>Location</strong>
                     <br />
-                    Lovely Professional University ,Block 13<br />
-                    DSW<br />
+                    Lovely Professional University ,Block 13
+                    <br />
+                    DSW
+                    <br />
                     Phagwara - 144411, Punjab, India
                   </div>
                 </div>
-                
+
                 <div className="d-flex align-items-center">
                   <FaClock className="me-3 text-warning" size={20} />
                   <div>
                     <strong>Office Hours</strong>
                     <br />
-                    Monday - Friday<br />
+                    Monday - Friday
+                    <br />
                     2:00 PM - 6:00 PM
                   </div>
                 </div>
@@ -197,18 +219,44 @@ const Contact = () => {
                 <h5 className="mb-0">Follow Us</h5>
               </Card.Header>
               <Card.Body>
-                <p>Stay connected with us on social media for the latest updates!</p>
+                <p>
+                  Stay connected with us on social media for the latest updates!
+                </p>
                 <div className="d-flex gap-3">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-primary" aria-label="Facebook">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary"
+                    aria-label="Facebook"
+                  >
                     <FaFacebook size={24} />
                   </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-info" aria-label="Twitter">
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-info"
+                    aria-label="Twitter"
+                  >
                     <FaTwitter size={24} />
                   </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-danger" aria-label="Instagram">
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-danger"
+                    aria-label="Instagram"
+                  >
                     <FaInstagram size={24} />
                   </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-primary" aria-label="LinkedIn">
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary"
+                    aria-label="LinkedIn"
+                  >
                     <FaLinkedin size={24} />
                   </a>
                 </div>
@@ -229,7 +277,9 @@ const Contact = () => {
                 <div className="mb-3">
                   <strong>Project Sessions</strong>
                   <br />
-                  <span className="text-muted">Thursdays & Saturdays, 3:00 PM</span>
+                  <span className="text-muted">
+                    Thursdays & Saturdays, 3:00 PM
+                  </span>
                 </div>
                 <div>
                   <strong>Workshop Days</strong>
@@ -254,34 +304,37 @@ const Contact = () => {
                     <div className="mb-4">
                       <h6>How can I join Brainstorm Club?</h6>
                       <p className="text-muted">
-                        Anyone can join! Just attend one of our general meetings or contact us 
-                        through this form. We welcome students from all departments and years.
+                        Anyone can join! Just attend one of our general meetings
+                        or contact us through this form. We welcome students
+                        from all departments and years.
                       </p>
                     </div>
-                    
+
                     <div className="mb-4">
                       <h6>Are there any membership fees?</h6>
                       <p className="text-muted">
-                        No, membership in Brainstorm Club is completely free. We believe in 
-                        making our community accessible to everyone.
+                        No, membership in Brainstorm Club is completely free. We
+                        believe in making our community accessible to everyone.
                       </p>
                     </div>
                   </Col>
-                  
+
                   <Col md={6}>
                     <div className="mb-4">
                       <h6>What kind of activities do you organize?</h6>
                       <p className="text-muted">
-                        We organize workshops, hackathons, project collaborations, guest lectures, 
-                        networking events, and community service projects.
+                        We organize workshops, hackathons, project
+                        collaborations, guest lectures, networking events, and
+                        community service projects.
                       </p>
                     </div>
-                    
+
                     <div className="mb-4">
                       <h6>Can I propose a project or event?</h6>
                       <p className="text-muted">
-                        Absolutely! We encourage member initiatives. Share your ideas during 
-                        meetings or contact our project coordinators.
+                        Absolutely! We encourage member initiatives. Share your
+                        ideas during meetings or contact our project
+                        coordinators.
                       </p>
                     </div>
                   </Col>
