@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 const cors = require("cors");
+const compression = require("compression");
 // Import routes
 const announcementRoutes = require("./routes/announcements");
 const eventRoutes = require("./routes/events");
@@ -24,6 +25,7 @@ app.use(
     credentials: true,
   }),
 );
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

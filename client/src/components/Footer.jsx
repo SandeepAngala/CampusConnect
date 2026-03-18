@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Footer = () => {
@@ -32,12 +33,12 @@ const Footer = () => {
           <Col md={4} className="mb-4">
             <h5>Quick Links</h5>
             <ul className="list-unstyled">
-              <li><a href="/">Home</a></li>
-              <li><a href="/announcements">Announcements</a></li>
-              <li><a href="/events">Events</a></li>
-              <li><a href="/activities">Activities</a></li>
-              <li><a href="/leadership">Leadership</a></li>
-              <li><a href="/contact">Contact Us</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/announcements">Announcements</Link></li>
+              <li><Link to="/events">Events</Link></li>
+              <li><Link to="/activities">Activities</Link></li>
+              <li><Link to="/leadership">Leadership</Link></li>
+              <li><Link to="/contact">Contact Us</Link></li>
             </ul>
           </Col>
           
