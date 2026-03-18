@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Spinner } from 'react-bootstrap';
 
+// Context
+import { AuthProvider } from './context/AuthContext';
+
 // Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -18,9 +21,6 @@ const Contact = lazy(() => import('./pages/Contact'));
 const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
-
-// Context
-import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
