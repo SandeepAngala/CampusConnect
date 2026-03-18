@@ -70,12 +70,16 @@ const connectDB = async () => {
   }
 };
 
+// Connect to MongoDB
+connectDB();
+
 // Start server
-app.listen(PORT, async () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`API endpoints available at http://localhost:${PORT}/api`);
-  console.log(`Frontend will be available at http://localhost:3000`);
-  await connectDB();
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, async () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`API endpoints available at http://localhost:${PORT}/api`);
+    console.log(`Frontend will be available at http://localhost:3000`);
+  });
+}
 
 module.exports = app;
