@@ -10,6 +10,7 @@ const eventRoutes = require("./routes/events");
 const activityRoutes = require("./routes/activities");
 const leadershipRoutes = require("./routes/leadership");
 const authRoutes = require("./routes/auth");
+const seedDB = require("./seed");
 
 // Configure dotenv
 dotenv.config({ path: path.join(__dirname, "../.env") });
@@ -54,6 +55,7 @@ const connectDB = async () => {
     ) {
       const conn = await mongoose.connect(process.env.MONGODB_URI);
       console.log(`MongoDB Connected: ${conn.connection.host}`);
+      await seedDB();
     } else {
       console.log(
         "MongoDB connection skipped - using demo credentials. Please update MONGODB_URI in .env",
